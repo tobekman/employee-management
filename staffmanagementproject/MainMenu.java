@@ -9,9 +9,9 @@ public class MainMenu {
     public static void menu() {
 
         while(true) {
-            System.out.println("\n1. Manage employees");
-            System.out.println("2. Show stats");
-            System.out.println("0. Exit");
+            System.out.println("\n[1] Manage employees");
+            System.out.println("[2] Show stats");
+            System.out.println("[0] Exit");
 
             switch (intScanner()) {
                 case 1:
@@ -25,15 +25,15 @@ public class MainMenu {
                     break;
             }
         }
-
     }
 
     private static void manageEmployeeMenu() {
-        System.out.println("\n1. Add employee");
-        System.out.println("2. Update employee");
-        System.out.println("3. Remove employee");
-        System.out.println("4. Show employees");
-        System.out.println("0. Back");
+        System.out.println("\n[1] Add employee");
+        System.out.println("[2] Update employee");
+        System.out.println("[3] Remove employee");
+        System.out.println("[4] Show employees");
+        System.out.println("[5] Sort employees");
+        System.out.println("[0] Back");
 
         switch (intScanner()) {
             case 1:
@@ -47,6 +47,9 @@ public class MainMenu {
                 break;
             case 4:
                 printMenu();
+                break;
+            case 5:
+                sortMenu();
                 break;
             default:
                 break;
@@ -74,15 +77,13 @@ public class MainMenu {
                 manageEmployeeMenu();
                 break;
         }
-
-
     }
 
     private static void statsMenu() {
-        System.out.println("1. Salary");
-        System.out.println("2. Jobs");
-        System.out.println("3. Gender");
-        System.out.println("0. Back");
+        System.out.println("[1] Salary");
+        System.out.println("[2] Jobs");
+        System.out.println("[3] Gender");
+        System.out.println("[0] Back");
 
         switch(intScanner()) {
             case 1:
@@ -123,11 +124,63 @@ public class MainMenu {
     }
 
     private static void jobMenu() {
-        System.out.println("1. All employees");
-        System.out.println("2. Programmers");
-        System.out.println("3. Secretaries");
-        System.out.println("4. Technicians");
-        System.out.println("0. Back");
+        System.out.println("[1] All employees");
+        System.out.println("[2] Programmers");
+        System.out.println("[3] Secretaries");
+        System.out.println("[4] Technicians");
+        System.out.println("[0] Back");
+    }
+
+    private static void sortMenu() {
+        boolean wrongInput = true;
+        while(wrongInput) {
+            System.out.println("\n[1] Sort by name");
+            System.out.println("[2] Sort by age");
+            switch (intScanner()) {
+                case 1:
+                    while(wrongInput) {
+                        System.out.println("\n[1] A to Z");
+                        System.out.println("[2] Z to A");
+                        switch(intScanner()) {
+                            case 1:
+                                EmployeeManagement.sortByName(1);
+                                wrongInput = false;
+                                break;
+                            case 2:
+                                EmployeeManagement.sortByName(2);
+                                wrongInput = false;
+                                break;
+                            default:
+                                System.out.println("You need to pick [1] or [2]");
+                                break;
+                        }
+                    }
+                    break;
+                case 2:
+                    while (wrongInput) {
+                        System.out.println("\n[1] Youngest first");
+                        System.out.println("[2] Oldest first");
+                        switch(intScanner()) {
+                            case 1:
+                                EmployeeManagement.sortByAge(1);
+                                wrongInput = false;
+                                break;
+                            case 2:
+                                EmployeeManagement.sortByAge(2);
+                                wrongInput = false;
+                                break;
+                            default:
+                                System.out.println("You need to pick [1] or [2]");
+                                break;
+                        }
+                    }
+                    break;
+                default:
+                    System.out.println("You need to pick [1] or [2]");
+                    break;
+            }
+        }
+        EmployeeManagement.printAllEmployees();
     }
 
 

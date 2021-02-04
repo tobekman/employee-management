@@ -12,9 +12,9 @@ public class EmployeeManagement {
 
     public static void createEmployee() {
         System.out.println("What kind of employee?");
-        System.out.println("1. Programmer");
-        System.out.println("2. Secretary");
-        System.out.println("3. Technician");
+        System.out.println("[1] Programmer");
+        System.out.println("[2] Secretary");
+        System.out.println("[3] Technician");
 
         int choice = intScanner();
 
@@ -73,7 +73,7 @@ public class EmployeeManagement {
                 if (e instanceof Programmer) {
                     Programmer p = (Programmer) e;
                     updateMenu();
-                    System.out.println("6. Built Programs");
+                    System.out.println("[6] Built Programs");
 
                     switch(intScanner()) {
                         case 1:
@@ -144,7 +144,7 @@ public class EmployeeManagement {
                 } else if (e instanceof Technician) {
                     Technician t = (Technician) e;
                     updateMenu();
-                    System.out.println("6. Crashed programs");
+                    System.out.println("[6] Crashed programs");
 
                     switch(intScanner()) {
                         case 1:
@@ -185,11 +185,11 @@ public class EmployeeManagement {
     }
 
     private static void updateMenu() {
-        System.out.println("1. Name");
-        System.out.println("2. Age");
-        System.out.println("3. Gender");
-        System.out.println("4. Salary");
-        System.out.println("5. Years of employment");
+        System.out.println("[1] Name");
+        System.out.println("[2] Age");
+        System.out.println("[3] Gender");
+        System.out.println("[4] Salary");
+        System.out.println("[5] Years of employment");
     }
 
     public static void printAllEmployees(){
@@ -373,7 +373,21 @@ public class EmployeeManagement {
         System.out.println(nonBinary + " non-binary");
     }
 
+    public static void sortByAge(int order) {
+        if (order == 1) {
+            employees.sort((singer1, singer2) -> singer1.getAge() - singer2.getAge());
+        } else if (order == 2) {
+            employees.sort((singer1, singer2) -> singer2.getAge() - singer1.getAge());
+        }
+    }
 
+    public static void sortByName(int order) {
+        if (order == 1) {
+            employees.sort((singer1, singer2) -> singer1.getName().toUpperCase().compareTo(singer2.getName().toUpperCase()));
+        } else if (order == 2) {
+            employees.sort((singer1, singer2) -> singer2.getName().toUpperCase().compareTo(singer1.getName().toUpperCase()));
+        }
+    }
 
 
 
