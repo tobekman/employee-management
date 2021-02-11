@@ -136,6 +136,7 @@ public class MainMenu {
         while(wrongInput) {
             System.out.println("\n[1] Sort by name");
             System.out.println("[2] Sort by age");
+            System.out.println("[3] Sort by salary");
             switch (intScanner()) {
                 case 1:
                     while(wrongInput) {
@@ -143,11 +144,11 @@ public class MainMenu {
                         System.out.println("[2] Z to A");
                         switch(intScanner()) {
                             case 1:
-                                EmployeeManagement.sortByName(1);
+                                EmployeeManagement.sortByName(true);
                                 wrongInput = false;
                                 break;
                             case 2:
-                                EmployeeManagement.sortByName(2);
+                                EmployeeManagement.sortByName(false);
                                 wrongInput = false;
                                 break;
                             default:
@@ -162,11 +163,30 @@ public class MainMenu {
                         System.out.println("[2] Oldest first");
                         switch(intScanner()) {
                             case 1:
-                                EmployeeManagement.sortByAge(1);
+                                EmployeeManagement.sortByAge(true);
                                 wrongInput = false;
                                 break;
                             case 2:
-                                EmployeeManagement.sortByAge(2);
+                                EmployeeManagement.sortByAge(false);
+                                wrongInput = false;
+                                break;
+                            default:
+                                System.out.println("You need to pick [1] or [2]");
+                                break;
+                        }
+                    }
+                    break;
+                case 3:
+                    while (wrongInput) {
+                        System.out.println("\n[1] Lowest first");
+                        System.out.println("[2] Highest first");
+                        switch(intScanner()) {
+                            case 1:
+                                EmployeeManagement.sortBySalary(true);
+                                wrongInput = false;
+                                break;
+                            case 2:
+                                EmployeeManagement.sortBySalary(false);
                                 wrongInput = false;
                                 break;
                             default:
@@ -176,7 +196,7 @@ public class MainMenu {
                     }
                     break;
                 default:
-                    System.out.println("You need to pick [1] or [2]");
+                    System.out.println("You need to pick [1], [2] or [3]");
                     break;
             }
         }

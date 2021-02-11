@@ -373,19 +373,27 @@ public class EmployeeManagement {
         System.out.println(nonBinary + " non-binary");
     }
 
-    public static void sortByAge(int order) {
-        if (order == 1) {
-            employees.sort((singer1, singer2) -> singer1.getAge() - singer2.getAge());
-        } else if (order == 2) {
-            employees.sort((singer1, singer2) -> singer2.getAge() - singer1.getAge());
+    public static void sortByAge(boolean order) {
+        if (order) {
+            employees.sort((e1, e2) -> e1.getAge() - e2.getAge());
+        } else {
+            employees.sort((e1, e2) -> e2.getAge() - e1.getAge());
         }
     }
 
-    public static void sortByName(int order) {
-        if (order == 1) {
-            employees.sort((singer1, singer2) -> singer1.getName().toUpperCase().compareTo(singer2.getName().toUpperCase()));
-        } else if (order == 2) {
-            employees.sort((singer1, singer2) -> singer2.getName().toUpperCase().compareTo(singer1.getName().toUpperCase()));
+    public static void sortByName(boolean order) {
+        if (order) {
+            employees.sort((e1, e2) -> e1.getName().toUpperCase().compareTo(e2.getName().toUpperCase()));
+        } else {
+            employees.sort((e1, e2) -> e2.getName().toUpperCase().compareTo(e1.getName().toUpperCase()));
+        }
+    }
+
+    public static void sortBySalary(boolean order) {
+        if (order) {
+            employees.sort((e1, e2) -> e1.getSalary() - e2.getSalary());
+        } else {
+            employees.sort((e1, e2) -> e2.getSalary() - e1.getSalary());
         }
     }
 
