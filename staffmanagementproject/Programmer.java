@@ -16,12 +16,14 @@ public class Programmer extends Employee {
         this.builtPrograms = builtPrograms;
     }
 
+    @Override
     public int calculateBonus() {
         return super.calculateBonus() + 500 * builtPrograms;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "\nPrograms built: " + builtPrograms;
+        return super.toString() + " | Programs built: "
+                + builtPrograms + " | Job: Programmer";
     }
 }

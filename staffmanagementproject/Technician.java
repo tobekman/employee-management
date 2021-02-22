@@ -16,12 +16,14 @@ public class Technician extends Employee {
         this.crashedServers = crashedServers;
     }
 
+    @Override
     public int calculateBonus() {
         return super.calculateBonus() - 500 * crashedServers;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "\nCrashed servers: " + crashedServers;
+        return super.toString() + " | Crashed servers: " + crashedServers
+                + " | Job: Technician";
     }
 }

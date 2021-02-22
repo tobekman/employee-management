@@ -1,12 +1,10 @@
 package staffmanagementproject;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class EmployeeManagement {
 
     static ArrayList<Employee> employees = new ArrayList<>();
-    static Scanner scanner = new Scanner(System.in);
 
 
 
@@ -16,23 +14,23 @@ public class EmployeeManagement {
         System.out.println("[2] Secretary");
         System.out.println("[3] Technician");
 
-        int choice = intScanner();
+        int choice = MyScanner.intScanner();
 
         System.out.print("Name: ");
-        String name = scanner.nextLine();
+        String name = MyScanner.stringScanner();
         System.out.print("Age: ");
-        int age = intScanner();
+        int age = MyScanner.intScanner();
         System.out.print("Gender: ");
-        String gender = scanner.nextLine();
+        String gender = MyScanner.stringScanner();
         System.out.print("Salary: ");
-        int salary = intScanner();
+        int salary = MyScanner.intScanner();
         System.out.print("Years of employment: ");
-        int years = intScanner();
+        int years = MyScanner.intScanner();
 
         switch (choice) {
             case 1:
                 System.out.print("Number of built programs: ");
-                int builtPrograms = intScanner();
+                int builtPrograms = MyScanner.intScanner();
                 Programmer programmer = new Programmer(name, age,gender,salary,years,builtPrograms);
                 employees.add(programmer);
                 break;
@@ -42,7 +40,7 @@ public class EmployeeManagement {
                 break;
             case 3:
                 System.out.print("Number of crashed servers: ");
-                int crashedServers = intScanner();
+                int crashedServers = MyScanner.intScanner();
                 Technician technician = new Technician(name, age,gender,salary,years,crashedServers);
                 employees.add(technician);
                 break;
@@ -55,131 +53,113 @@ public class EmployeeManagement {
         printAllEmployees();
 
         System.out.print("Remove the employee with id: ");
-        int id = intScanner();
-
-        employees.removeIf(employee -> employee.id == id);
+        Employee e = getEmployee();
+        employees.removeIf(employee -> employee == e);
 
     }
 
     public static void updateEmployee() {
         printAllEmployees();
         System.out.print("\nUpdate the employee with id: ");
-        int id = intScanner();
+        Employee e = getEmployee();
 
+        if (e instanceof Programmer) {
+            Programmer p = (Programmer) e;
+            updateMenu();
+            System.out.println("[6] Built Programs");
 
+            switch(MyScanner.intScanner()) {
+                case 1:
+                    System.out.print("New name: ");
+                    p.setName(MyScanner.stringScanner());
+                    break;
+                case 2:
+                    System.out.print("New age: ");
+                    p.setAge(MyScanner.intScanner());
+                    break;
+                case 3:
+                    System.out.print("New gender: ");
+                    p.setGender(MyScanner.stringScanner());
+                    break;
+                case 4:
+                    System.out.print("New salary: ");
+                    p.setSalary(MyScanner.intScanner());
+                    break;
+                case 5:
+                    System.out.print("New number of years: ");
+                    p.setYearsOfEmployment(MyScanner.intScanner());
+                    break;
+                case 6:
+                    System.out.print("New built programs: ");
+                    p.setBuiltPrograms(MyScanner.intScanner());
+                    p.setBonus(p.calculateBonus());
+                    break;
+                default:
+                    break;
+            }
 
-        for (Employee e: employees) {
-            if (e.getId() == id) {
-                if (e instanceof Programmer) {
-                    Programmer p = (Programmer) e;
-                    updateMenu();
-                    System.out.println("[6] Built Programs");
+        } else if (e instanceof Secretary) {
+            Secretary s = (Secretary) e;
+            updateMenu();
 
-                    switch(intScanner()) {
-                        case 1:
-                            System.out.print("New name: ");
-                            p.setName(scanner.nextLine());
-                            break;
-                        case 2:
-                            System.out.print("New age: ");
-                            p.setAge(scanner.nextInt());
-                            scanner.nextLine();
-                            break;
-                        case 3:
-                            System.out.print("New gender: ");
-                            p.setGender(scanner.nextLine());
-                            break;
-                        case 4:
-                            System.out.print("New salary: ");
-                            p.setSalary(scanner.nextInt());
-                            scanner.nextLine();
-                            break;
-                        case 5:
-                            System.out.print("New number of years: ");
-                            p.setYearsOfEmployment(scanner.nextInt());
-                            scanner.nextLine();
-                            break;
-                        case 6:
-                            System.out.print("New built programs: ");
-                            p.setBuiltPrograms(scanner.nextInt());
-                            scanner.nextLine();
-                            p.setBonus(p.calculateBonus());
-                            break;
-                        default:
-                            break;
-                    }
+            switch(MyScanner.intScanner()) {
+                case 1:
+                    System.out.print("New name: ");
+                    s.setName(MyScanner.stringScanner());
+                    break;
+                case 2:
+                    System.out.print("New age: ");
+                    s.setAge(MyScanner.intScanner());
+                    break;
+                case 3:
+                    System.out.print("New gender: ");
+                    s.setGender(MyScanner.stringScanner());
+                    break;
+                case 4:
+                    System.out.print("New salary: ");
+                    s.setSalary(MyScanner.intScanner());
+                    break;
+                case 5:
+                    System.out.print("New number of years: ");
+                    s.setYearsOfEmployment(MyScanner.intScanner());
+                    s.setBonus(s.calculateBonus());
+                    break;
+                default:
+                    break;
+            }
+        } else if (e instanceof Technician) {
+            Technician t = (Technician) e;
+            updateMenu();
+            System.out.println("[6] Crashed programs");
 
-                } else if (e instanceof Secretary) {
-                    Secretary s = (Secretary) e;
-                    updateMenu();
-
-                    switch(intScanner()) {
-                        case 1:
-                            System.out.print("New name: ");
-                            s.setName(scanner.nextLine());
-                            break;
-                        case 2:
-                            System.out.print("New age: ");
-                            s.setAge(scanner.nextInt());
-                            scanner.nextLine();
-                            break;
-                        case 3:
-                            System.out.print("New gender: ");
-                            s.setGender(scanner.nextLine());
-                            break;
-                        case 4:
-                            System.out.print("New salary: ");
-                            s.setSalary(scanner.nextInt());
-                            scanner.nextLine();
-                            break;
-                        case 5:
-                            System.out.print("New number of years: ");
-                            s.setYearsOfEmployment(scanner.nextInt());
-                            scanner.nextLine();
-                            s.setBonus(s.calculateBonus());
-                            break;
-                        default:
-                            break;
-                    }
-                } else if (e instanceof Technician) {
-                    Technician t = (Technician) e;
-                    updateMenu();
-                    System.out.println("[6] Crashed programs");
-
-                    switch(intScanner()) {
-                        case 1:
-                            System.out.print("New name: ");
-                            t.setName(scanner.nextLine());
-                            break;
-                        case 2:
-                            System.out.print("New age: ");
-                            t.setAge(scanner.nextInt());
-                            scanner.nextLine();
-                            break;
-                        case 3:
-                            System.out.print("New gender: ");
-                            t.setGender(scanner.nextLine());
-                            break;
-                        case 4:
-                            System.out.print("New salary: ");
-                            t.setSalary(scanner.nextInt());
-                            scanner.nextLine();
-                            break;
-                        case 5:
-                            System.out.print("New number of years: ");
-                            t.setYearsOfEmployment(scanner.nextInt());
-                            scanner.nextLine();
-                            break;
-                        case 6:
-                            System.out.print("New number of crashed servers: ");
-                            t.setCrashedServers(scanner.nextInt());
-                            scanner.nextLine();
-                            t.setBonus(t.calculateBonus());
-                            break;
-                        default:
-                            break;
-                    }
-                }
+            switch(MyScanner.intScanner()) {
+                case 1:
+                    System.out.print("New name: ");
+                    t.setName(MyScanner.stringScanner());
+                    break;
+                case 2:
+                    System.out.print("New age: ");
+                    t.setAge(MyScanner.intScanner());
+                    break;
+                case 3:
+                    System.out.print("New gender: ");
+                    t.setGender(MyScanner.stringScanner());
+                    break;
+                case 4:
+                    System.out.print("New salary: ");
+                    t.setSalary(MyScanner.intScanner());
+                    break;
+                case 5:
+                    System.out.print("New number of years: ");
+                    t.setYearsOfEmployment(MyScanner.intScanner());
+                    break;
+                case 6:
+                    System.out.print("New number of crashed servers: ");
+                    t.setCrashedServers(MyScanner.intScanner());
+                    t.setBonus(t.calculateBonus());
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -196,13 +176,10 @@ public class EmployeeManagement {
         for (Employee e: employees) {
             if(e instanceof Programmer) {
                 System.out.println(e);
-                System.out.println("Job: Programmer");
             } else if (e instanceof Secretary) {
                 System.out.println(e);
-                System.out.println("Job: Secretary");
             } else if(e instanceof Technician) {
                 System.out.println(e);
-                System.out.println("Job: Technician");
             }
 
         }
@@ -232,11 +209,6 @@ public class EmployeeManagement {
         }
     }
 
-    private static int intScanner() {
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        return choice;
-    }
 
     public static void salaryStats(String jobTitle) {
         int salarySum = 0;
@@ -373,6 +345,18 @@ public class EmployeeManagement {
         System.out.println(nonBinary + " non-binary");
     }
 
+    private static Employee getEmployee() {
+        while(true) {
+            int id = MyScanner.intScanner();
+            for (Employee e : employees) {
+                if (e.getId() == id) {
+                    return e;
+                }
+            }
+            System.out.print("\nCan't find an employee with the id " + id + "\nPlease provide a new id ");
+        }
+    }
+
     public static void sortByAge(boolean order) {
         if (order) {
             employees.sort((e1, e2) -> e1.getAge() - e2.getAge());
@@ -383,9 +367,9 @@ public class EmployeeManagement {
 
     public static void sortByName(boolean order) {
         if (order) {
-            employees.sort((e1, e2) -> e1.getName().toUpperCase().compareTo(e2.getName().toUpperCase()));
+            employees.sort((e1, e2) -> e1.getName().compareToIgnoreCase(e2.getName()));
         } else {
-            employees.sort((e1, e2) -> e2.getName().toUpperCase().compareTo(e1.getName().toUpperCase()));
+            employees.sort((e1, e2) -> e2.getName().compareToIgnoreCase(e1.getName()));
         }
     }
 

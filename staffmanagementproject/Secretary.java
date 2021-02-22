@@ -7,8 +7,13 @@ public class Secretary extends Employee {
         super(name, age, gender, salary, yearsOfEmployment);
     }
 
+    @Override
     public int calculateBonus() {
         return super.calculateBonus() + 500 * yearsOfEmployment;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + " | Job: Secretary";
+    }
 }

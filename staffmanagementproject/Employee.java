@@ -78,12 +78,14 @@ public class Employee {
 
     @Override
     public String toString() {
-        return  "\nEmployee ID: " + id +
-                "\nName: " + name +
-                "\nAge: " + age +
-                "\nGender: " + gender +
-                "\nSalary: " + salary +
-                "\nBonus: " + calculateBonus() +
-                "\nYears employed: " + yearsOfEmployment;
+        return "ID: " + id +
+                " | Name: " + name +
+                " | Age: " + age +
+                " | Gender: " + gender +
+                " | Salary: " + salary +
+                " | Bonus: " + calculateBonus() +
+                " | Years employed: " + yearsOfEmployment;
+
+
     }
 }

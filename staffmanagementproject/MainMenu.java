@@ -1,10 +1,7 @@
 package staffmanagementproject;
 
-import java.util.Scanner;
-
 public class MainMenu {
 
-    static Scanner scanner = new Scanner(System.in);
 
     public static void menu() {
 
@@ -13,7 +10,7 @@ public class MainMenu {
             System.out.println("[2] Show stats");
             System.out.println("[0] Exit");
 
-            switch (intScanner()) {
+            switch (MyScanner.intScanner()) {
                 case 1:
                     manageEmployeeMenu();
                     break;
@@ -35,7 +32,7 @@ public class MainMenu {
         System.out.println("[5] Sort employees");
         System.out.println("[0] Back");
 
-        switch (intScanner()) {
+        switch (MyScanner.intScanner()) {
             case 1:
                 EmployeeManagement.createEmployee();
                 break;
@@ -60,7 +57,7 @@ public class MainMenu {
         System.out.println("\nWhat do you want to see?");
         jobMenu();
 
-        switch (intScanner()) {
+        switch (MyScanner.intScanner()) {
             case 1:
                 EmployeeManagement.printAllEmployees();
                 break;
@@ -85,11 +82,11 @@ public class MainMenu {
         System.out.println("[3] Gender");
         System.out.println("[0] Back");
 
-        switch(intScanner()) {
+        switch(MyScanner.intScanner()) {
             case 1:
                 System.out.println("Show stats for: ");
                 jobMenu();
-                switch (intScanner()) {
+                switch (MyScanner.intScanner()) {
                     case 1:
                         EmployeeManagement.salaryStats("all");
                         break;
@@ -117,12 +114,6 @@ public class MainMenu {
         }
     }
 
-    private static int intScanner() {
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        return choice;
-    }
-
     private static void jobMenu() {
         System.out.println("[1] All employees");
         System.out.println("[2] Programmers");
@@ -137,12 +128,12 @@ public class MainMenu {
             System.out.println("\n[1] Sort by name");
             System.out.println("[2] Sort by age");
             System.out.println("[3] Sort by salary");
-            switch (intScanner()) {
+            switch (MyScanner.intScanner()) {
                 case 1:
                     while(wrongInput) {
                         System.out.println("\n[1] A to Z");
                         System.out.println("[2] Z to A");
-                        switch(intScanner()) {
+                        switch(MyScanner.intScanner()) {
                             case 1:
                                 EmployeeManagement.sortByName(true);
                                 wrongInput = false;
@@ -161,7 +152,7 @@ public class MainMenu {
                     while (wrongInput) {
                         System.out.println("\n[1] Youngest first");
                         System.out.println("[2] Oldest first");
-                        switch(intScanner()) {
+                        switch(MyScanner.intScanner()) {
                             case 1:
                                 EmployeeManagement.sortByAge(true);
                                 wrongInput = false;
@@ -180,7 +171,7 @@ public class MainMenu {
                     while (wrongInput) {
                         System.out.println("\n[1] Lowest first");
                         System.out.println("[2] Highest first");
-                        switch(intScanner()) {
+                        switch(MyScanner.intScanner()) {
                             case 1:
                                 EmployeeManagement.sortBySalary(true);
                                 wrongInput = false;
